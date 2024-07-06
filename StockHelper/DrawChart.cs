@@ -13,8 +13,13 @@ namespace StockHelper
         // Signal() 매수, 매도 시점 차트에 표시하기
         // News() 뉴스 뜬 날 차트에 표시하기
         // Keyword() 
+
+        MainForm mainForm = new MainForm();
+        string stockName;
+
         public void Basic()
         {
+            stockName = mainForm.StockNameTB.Text;
 
         }
     }
