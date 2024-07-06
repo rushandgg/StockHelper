@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace StockHelper
 {
@@ -22,80 +23,66 @@ namespace StockHelper
             "Password=1111;" +
             "Database=krx";
 
-        private DataTable Master()
+        public DataTable Master(string market)
         {   // 국내주식 마스터 정보를 가져옴
             // name(종목명), code(종목코드), sector(업종), industry(산업)
 
-            DataTable MasterData = new DataTable();
-
+            DataTable masterData = new DataTable();
+            string masterSql = "";
             using (NpgsqlConnection conn = new NpgsqlConnection(connString))
             {
                 try
                 {
                     conn.Open();
 
-                    DataTable kospiMasterData = new DataTable();
-                    DataTable kosdaqMasterData = new DataTable();
-
-                    string kospiMasterSql = "SELECT name, code, sector, industry FROM krx_schema.kospi_master";
-                    string kosdaqMasterSql = "SELECT name, code, sector, industry FROM krx_schema.kosdaq_master";
-
-                    // Fill kospiData
-                    using (NpgsqlDataAdapter kospiMasterAdapter = new NpgsqlDataAdapter(kospiMasterSql, conn))
+                    if (market == "kospi")
                     {
-                        kospiMasterAdapter.Fill(kospiMasterData);
+                        masterSql = "SELECT name, code, sector, industry FROM krx_schema.kospi_master";
                     }
-
-                    // Fill kosdaqData
-                    using (NpgsqlDataAdapter kosdaqMasterAdapter = new NpgsqlDataAdapter(kosdaqMasterSql, conn))
+                    else if (market == "kosdaq")
                     {
-                        kosdaqMasterAdapter.Fill(kosdaqMasterData);
+                        masterSql = "SELECT name, code, sector, industry FROM krx_schema.kosdaq_master";
                     }
-
-                    MasterData.Merge(kospiMasterData);
-                    MasterData.Merge(kosdaqMasterData);
                     
+                    using (NpgsqlDataAdapter masterAdapter = new NpgsqlDataAdapter(masterSql, conn))
+                    {
+                        masterAdapter.Fill(masterData);
+                    }
                     conn.Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
-                
             }
-            return MasterData;
+            return masterData;
         }
 
-        private DataTable DayPrice()
-        {
-            DataTable DayPriceData = new DataTable();
-
+        public DataTable DayPrice(string market)
+        {   // 국내주식 일별 주가 정보를 가져옴
+            // name(종목명), code(종목코드), date(날짜), open(시가), high(고가), low(저가), close(종가), volume(거래량), rate(등락률)
+            
+            DataTable dayPriceData = new DataTable();
+            string dayPriceSql = "";
             using (NpgsqlConnection conn = new NpgsqlConnection(connString))
             {
                 try
                 {
                     conn.Open();
 
-                    DataTable kospiDayPriceData = new DataTable();
-                    DataTable kosdaqDayPriceData = new DataTable();
-
-                    string kospiDayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kospi";
-                    string kosdaqDayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kosdaq";
-
-                    // Fill kospiData
-                    using (NpgsqlDataAdapter kospiDayPriceAdapter = new NpgsqlDataAdapter(kospiDayPriceSql, conn))
+                    if (market == "kospi")
                     {
-                        kospiDayPriceAdapter.Fill(kospiDayPriceData);
+                        dayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kospi";
                     }
-
-                    // Fill kosdaqData
-                    using (NpgsqlDataAdapter kosdaqDayPriceAdapter = new NpgsqlDataAdapter(kosdaqDayPriceSql, conn))
+                    else if (market == "kosdaq")
                     {
-                        kosdaqDayPriceAdapter.Fill(kosdaqDayPriceData);
+                        dayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kosdaq";
                     }
-
-                    DayPriceData.Merge(kospiDayPriceData);
-                    DayPriceData.Merge(kosdaqDayPriceData);
+                    
+                    using (NpgsqlDataAdapter dayPriceAdapter = new NpgsqlDataAdapter(dayPriceSql, conn))
+                    {
+                        dayPriceAdapter.Fill(dayPriceData);
+                    }
 
                     conn.Close();
                 }
@@ -103,46 +90,35 @@ namespace StockHelper
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
-
             }
-            return DayPriceData;
+            return dayPriceData;
         }
 
-        private DataTable News()
-        {
+        public DataTable News(string market)
+        {   // 국내주식 종목별 뉴스 정보를 가져옴
+            // name(종목명), code(종목코드), date(날짜), title(뉴스제목)
 
-        }
-
-        private DataTable Keyword()
-        {
-            DataTable KeywordData = new DataTable();
-
+            DataTable newsData = new DataTable();
+            string newsSql = "";
             using (NpgsqlConnection conn = new NpgsqlConnection(connString))
             {
                 try
                 {
                     conn.Open();
 
-                    DataTable kospiKeywordData = new DataTable();
-                    DataTable kosdaqKeywordData = new DataTable();
-
-                    string kospiKeywordSql = "SELECT name, code, date, word1, word2, word3, word4, word5 FROM krx_schema.kospi_keyword";
-                    string kosdaqKeywordSql = "SELECT name, code, date, word1, word2, word3, word4, word5 FROM krx_schema.kosdaq_keyword";
-
-                    // Fill kospiData
-                    using (NpgsqlDataAdapter kospiKeywordAdapter = new NpgsqlDataAdapter(kospiKeywordSql, conn))
+                    if (market == "kospi")
                     {
-                        kospiKeywordAdapter.Fill(kospiKeywordData);
+                        newsSql = "SELECT name, code, date, title FROM krx_schema.kospi_news";
+                    }
+                    else if (market == "kosdaq")
+                    {
+                        newsSql = "SELECT name, code, date, title FROM krx_schema.kosdaq_news";
                     }
 
-                    // Fill kosdaqData
-                    using (NpgsqlDataAdapter kosdaqKeywordAdapter = new NpgsqlDataAdapter(kosdaqKeywordSql, conn))
+                    using (NpgsqlDataAdapter newsAdapter = new NpgsqlDataAdapter(newsSql, conn))
                     {
-                        kosdaqKeywordAdapter.Fill(kosdaqKeywordData);
+                        newsAdapter.Fill(newsData);
                     }
-
-                    KeywordData.Merge(kospiKeywordData);
-                    KeywordData.Merge(kosdaqKeywordData);
 
                     conn.Close();
                 }
@@ -150,9 +126,44 @@ namespace StockHelper
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
-
             }
-            return KeywordData;
+            return newsData;
+        }
+
+        public DataTable Keyword(string market)
+        {   // 국내주식 종목별 뉴스 키워드 정보를 가져옴
+            // name(종목명), code(종목코드), date(날짜), word1,2,3,4,5(키워드)
+
+            DataTable keywordData = new DataTable();
+            string keywordSql = "";
+            using (NpgsqlConnection conn = new NpgsqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    if (market == "kospi")
+                    {
+                        keywordSql = "SELECT name, code, date, word1, word2, word3, word4, word5 FROM krx_schema.kospi_keyword";
+                    }
+                    else if (market == "kosdaq")
+                    {
+                        keywordSql = "SELECT name, code, date, word1, word2, word3, word4, word5 FROM krx_schema.kosdaq_keyword";
+                    }
+
+                    using (NpgsqlDataAdapter keywordAdapter = new NpgsqlDataAdapter(keywordSql, conn))
+                    {
+                        keywordAdapter.Fill(keywordData);
+                    }
+
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+            return keywordData;
         }
     }
 }

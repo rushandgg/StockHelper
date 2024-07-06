@@ -12,9 +12,35 @@ namespace StockHelper
 {
     public partial class MainForm : Form
     {
+        List<string> kospiStockNameList = new List<string>();
+        List<string> kosdaqStockNameList = new List<string>();
+        List<string> kospiStockCodeList = new List<string>();
+        List<string> kosdaqStockCodeList = new List<string>();
+
         public MainForm()
         {
             InitializeComponent();
+        }
+
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // 마스터 정보 불러오기
+            MakeSource makeSource = new MakeSource();
+            kospiStockNameList = makeSource.StockList("kospi", "name");
+            kospiStockCodeList = makeSource.StockList("kospi", "code");
+            kosdaqStockNameList = makeSource.StockList("kosdaq", "name");
+            kosdaqStockCodeList = makeSource.StockList("kosdaq", "code");
+
+            // 자동완성 소스 목록 구성
+            AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+            autoCompleteCollection.AddRange(kospiStockNameList.ToArray());
+            autoCompleteCollection.AddRange(kospiStockCodeList.ToArray());
+            autoCompleteCollection.AddRange(kosdaqStockNameList.ToArray());
+            autoCompleteCollection.AddRange(kosdaqStockCodeList.ToArray());
+
+            // 자동완성 소스 채우기
+            StockNameTB.AutoCompleteCustomSource = autoCompleteCollection;
         }
 
 
@@ -36,6 +62,24 @@ namespace StockHelper
         private void MenuApiBtn_Click(object sender, EventArgs e)
         {
             MainTabControl.SelectedIndex = 3;
+        }
+
+        private void StockNameTB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                DrawChart drawChart = new DrawChart();
+                drawChart.Basic();
+            }
+        }
+
+        private void ChartSearchBtn_Click(object sender, EventArgs e)
+        {
+            DrawChart drawChart = new DrawChart();
+            drawChart.Basic();
         }
     }
 }
