@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,15 +14,47 @@ namespace StockHelper
     public class LoadData
     {
         // 데이터를 불러올 때 쓸 class
+        // CreateDirectory() 저장할 폴더가 없을 경우 폴더를 생성해줌
         // Master() 국내주식 마스터 정보 불러오기
         // DayPrice() 국내주식 일별 주가 불러오기
         // News() 국내주식 종목별 뉴스 불러오기
         // Keyword() 국내주식 종목별 키워드 불러오기
-
+        // SearchFormula() 조건식 불러오기
+        // TradingRule() 매매규칙 불러오기
+        
+        // DB 입력정보
         readonly string connString = "Host=localhost;" +
             "Username=postgres;" +
             "Password=1111;" +
             "Database=krx";
+
+        public void CreateDirectory()
+        {
+
+            string myDocumentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string stockHelperPath = Path.Combine(myDocumentsPath, "StockHelper");
+            string searchFormulasPath = Path.Combine(stockHelperPath, "SearchFormulas");
+            string tradingRulesPath = Path.Combine(stockHelperPath, "TradingRules");
+
+            // StockHelper 폴더 생성
+            if (!Directory.Exists(stockHelperPath))
+            {
+                Directory.CreateDirectory(stockHelperPath);
+            }
+
+            // SearchFormulas 폴더 생성
+            if (!Directory.Exists(searchFormulasPath))
+            {
+                Directory.CreateDirectory(searchFormulasPath);
+            }
+
+            // TradingRules 폴더 생성
+            if (!Directory.Exists(tradingRulesPath))
+            {
+                Directory.CreateDirectory(tradingRulesPath);
+            }
+        }
+
 
         public DataTable Master(string market)
         {   // 국내주식 마스터 정보를 가져옴
@@ -165,5 +198,11 @@ namespace StockHelper
             }
             return keywordData;
         }
+        /*
+        public Dictionary<string, string> SearchFormula()
+        {
+
+        }
+        */
     }
 }

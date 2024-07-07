@@ -25,6 +25,10 @@ namespace StockHelper
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // 저장 폴더 생성
+            LoadData loadData = new LoadData();
+            loadData.CreateDirectory();
+
             // 마스터 정보 불러오기
             MakeSource makeSource = new MakeSource();
             kospiStockNameList = makeSource.StockList("kospi", "name");
