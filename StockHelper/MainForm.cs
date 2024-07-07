@@ -23,14 +23,12 @@ namespace StockHelper
             InitializeComponent();
         }
 
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             // 저장 폴더 생성
             LoadData loadData = new LoadData();
             loadData.CreateDirectory();
 
-            
             // 마스터 정보 불러오기
             MakeSource makeSource = new MakeSource();
             kospiStockNameList = makeSource.StockList("kospi", "name");
@@ -94,6 +92,36 @@ namespace StockHelper
             DataTable master = loadData.Master("kospi");
 
             Console.WriteLine(master.Rows.Count);
+        }
+
+        public string[] DetermineNameCode(string data)
+        {   // TextBox에 있는 내용이 코스피인지 코스닥인지, 종목명인지 종목코드인지 판별해서 넘겨줌
+
+            string[] dataArray = new string[3];
+            dataArray[2] = data;
+
+            if (kospiStockNameList.Contains(data))
+            {
+                dataArray[0] = "kospi";
+                dataArray[1] = "name";
+            }
+            else if (kospiStockCodeList.Contains(data))
+            {
+                dataArray[0] = "kospi";
+                dataArray[1] = "code";
+            }
+            else if (kosdaqStockNameList.Contains(data))
+            {
+                dataArray[0] = "kosdaq";
+                dataArray[1] = "name";
+            }
+            else if (kosdaqStockCodeList.Contains(data))
+            {
+                dataArray[0] = "kosdaq";
+                dataArray[1] = "code";
+            }
+
+            return dataArray;
         }
     }
 }

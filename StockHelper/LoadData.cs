@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Npgsql;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace StockHelper
 {
@@ -24,7 +22,11 @@ namespace StockHelper
         // TradingRule() 매매규칙 불러오기
         
         // DB 입력정보
-        string connString = "Host=localhost;Port=5432;Username=postgres;Password=1111;Database=krx";
+        string connString = "Host=localhost;" +
+                            "Port=5432;" +
+                            "Username=postgres;" +
+                            "Password=1111;" +
+                            "Database=krx";
 
         public void CreateDirectory()
         {
@@ -89,12 +91,12 @@ namespace StockHelper
             return masterData;
         }
 
-        public DataTable DayPrice(string market)
-        {   // 국내주식 일별 주가 정보를 가져옴
+        public DataTable AllDayPrice(string market)
+        {   // 국내주식 중 전체의 일별 주가 정보를 가져옴
             // name(종목명), code(종목코드), date(날짜), open(시가), high(고가), low(저가), close(종가), volume(거래량), rate(등락률)
             
-            DataTable dayPriceData = new DataTable();
-            string dayPriceSql = "";
+            DataTable allDayPriceData = new DataTable();
+            string allDayPriceSql = "";
             using (NpgsqlConnection conn = new NpgsqlConnection(connString))
             {
                 try
@@ -103,13 +105,57 @@ namespace StockHelper
 
                     if (market == "kospi")
                     {
-                        dayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kospi;";
+                        allDayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kospi;";
                     }
                     else if (market == "kosdaq")
                     {
-                        dayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kosdaq;";
+                        allDayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kosdaq;";
                     }
                     
+                    using (NpgsqlDataAdapter dayPriceAdapter = new NpgsqlDataAdapter(allDayPriceSql, conn))
+                    {
+                        dayPriceAdapter.Fill(allDayPriceData);
+                    }
+
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+            return allDayPriceData;
+        }
+
+        public DataTable DayPrice(string market, string dataType, string stockData)
+        {   // 국내주식 중 개별의 일별 주가 정보를 가져옴
+            // name(종목명), code(종목코드), date(날짜), open(시가), high(고가), low(저가), close(종가), volume(거래량), rate(등락률)
+
+            DataTable dayPriceData = new DataTable();
+            string dayPriceSql = "";
+            using (NpgsqlConnection conn = new NpgsqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    if (market == "kospi" && dataType == "name")
+                    {
+                        dayPriceSql = $"SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kospi WHERE name = {stockData};";
+                    }
+                    else if (market == "kospi" && dataType == "code")
+                    {
+                        dayPriceSql = $"SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kospi WERE code = {stockData};";
+                    }
+                    else if (market == "kosdaq" && dataType == "name")
+                    {
+                        dayPriceSql = $"SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kosdaq WHERE name = {stockData};";
+                    }
+                    else if (market == "kosdaq" && dataType == "code")
+                    {
+                        dayPriceSql = $"SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kosdaq WHERE code = {stockData};";
+                    }
+
                     using (NpgsqlDataAdapter dayPriceAdapter = new NpgsqlDataAdapter(dayPriceSql, conn))
                     {
                         dayPriceAdapter.Fill(dayPriceData);

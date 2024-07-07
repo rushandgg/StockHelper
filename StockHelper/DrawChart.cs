@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace StockHelper
 {
@@ -14,12 +15,14 @@ namespace StockHelper
         // News() 뉴스 뜬 날 차트에 표시하기
         // Keyword() 
 
-        MainForm mainForm = new MainForm();
-        string stockName;
-
-        public void Basic()
+        public void Basic(string[] stockDataArray)
         {
-            stockName = mainForm.StockNameTB.Text;
+            string market = stockDataArray[0];
+            string dataType = stockDataArray[1];
+            string stockData = stockDataArray[2];
+
+            LoadData loadData = new LoadData();
+            DataTable priceTable = loadData.DayPrice(market, dataType, stockData);
 
         }
     }
