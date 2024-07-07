@@ -43,34 +43,35 @@
             this.dataPage = new System.Windows.Forms.TabPage();
             this.rulePage = new System.Windows.Forms.TabPage();
             this.apiPage = new System.Windows.Forms.TabPage();
-            this.MenuRuleBtn = new System.Windows.Forms.Button();
-            this.MenuApiBtn = new System.Windows.Forms.Button();
-            this.KiwoomLbl = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.SecuritiesApiGB = new System.Windows.Forms.GroupBox();
-            this.LsLbl = new System.Windows.Forms.Label();
-            this.SecuritiesIdLbl = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.KiwoomIdTB = new System.Windows.Forms.TextBox();
-            this.KiwoomPwTB = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.KiwoomCertTB = new System.Windows.Forms.TextBox();
+            this.SecuritiesLoginBtn = new System.Windows.Forms.Button();
             this.LsCertTB = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.LsPwTb = new System.Windows.Forms.TextBox();
             this.LsIdTB = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.SecuritiesLoginBtn = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
+            this.KiwoomCertTB = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.KiwoomPwTB = new System.Windows.Forms.TextBox();
+            this.KiwoomIdTB = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SecuritiesIdLbl = new System.Windows.Forms.Label();
+            this.LsLbl = new System.Windows.Forms.Label();
+            this.KiwoomLbl = new System.Windows.Forms.Label();
+            this.MenuRuleBtn = new System.Windows.Forms.Button();
+            this.MenuApiBtn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.MainTabControl.SuspendLayout();
             this.chartPage.SuspendLayout();
             this.StockSearchGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.apiPage.SuspendLayout();
-            this.SecuritiesApiGB.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.SecuritiesApiGB.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuChartBtn
@@ -122,6 +123,7 @@
             // 
             // StockSearchGB
             // 
+            this.StockSearchGB.Controls.Add(this.button2);
             this.StockSearchGB.Controls.Add(this.ChartSearchBtn);
             this.StockSearchGB.Controls.Add(this.StockNameTB);
             this.StockSearchGB.Controls.Add(this.StockNameLbl);
@@ -207,36 +209,34 @@
             this.apiPage.Text = "apiPage";
             this.apiPage.UseVisualStyleBackColor = true;
             // 
-            // MenuRuleBtn
+            // groupBox1
             // 
-            this.MenuRuleBtn.Location = new System.Drawing.Point(12, 144);
-            this.MenuRuleBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.MenuRuleBtn.Name = "MenuRuleBtn";
-            this.MenuRuleBtn.Size = new System.Drawing.Size(131, 66);
-            this.MenuRuleBtn.TabIndex = 3;
-            this.MenuRuleBtn.Text = "3. 조건식";
-            this.MenuRuleBtn.UseVisualStyleBackColor = true;
-            this.MenuRuleBtn.Click += new System.EventHandler(this.MenuRuleBtn_Click);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Location = new System.Drawing.Point(20, 186);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(707, 159);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "ChatGPT API";
             // 
-            // MenuApiBtn
+            // button1
             // 
-            this.MenuApiBtn.Location = new System.Drawing.Point(12, 210);
-            this.MenuApiBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.MenuApiBtn.Name = "MenuApiBtn";
-            this.MenuApiBtn.Size = new System.Drawing.Size(131, 66);
-            this.MenuApiBtn.TabIndex = 4;
-            this.MenuApiBtn.Text = "4. API";
-            this.MenuApiBtn.UseVisualStyleBackColor = true;
-            this.MenuApiBtn.Click += new System.EventHandler(this.MenuApiBtn_Click);
+            this.button1.Location = new System.Drawing.Point(417, 82);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "로그인";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // KiwoomLbl
+            // label11
             // 
-            this.KiwoomLbl.AutoSize = true;
-            this.KiwoomLbl.Location = new System.Drawing.Point(51, 31);
-            this.KiwoomLbl.Name = "KiwoomLbl";
-            this.KiwoomLbl.Size = new System.Drawing.Size(53, 12);
-            this.KiwoomLbl.TabIndex = 0;
-            this.KiwoomLbl.Text = "키움증권";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(22, 57);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(16, 12);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "ID";
             // 
             // SecuritiesApiGB
             // 
@@ -262,62 +262,14 @@
             this.SecuritiesApiGB.TabStop = false;
             this.SecuritiesApiGB.Text = "증권사 API";
             // 
-            // LsLbl
+            // SecuritiesLoginBtn
             // 
-            this.LsLbl.AutoSize = true;
-            this.LsLbl.Location = new System.Drawing.Point(231, 31);
-            this.LsLbl.Name = "LsLbl";
-            this.LsLbl.Size = new System.Drawing.Size(44, 12);
-            this.LsLbl.TabIndex = 1;
-            this.LsLbl.Text = "LS증권";
-            // 
-            // SecuritiesIdLbl
-            // 
-            this.SecuritiesIdLbl.AutoSize = true;
-            this.SecuritiesIdLbl.Location = new System.Drawing.Point(22, 57);
-            this.SecuritiesIdLbl.Name = "SecuritiesIdLbl";
-            this.SecuritiesIdLbl.Size = new System.Drawing.Size(16, 12);
-            this.SecuritiesIdLbl.TabIndex = 2;
-            this.SecuritiesIdLbl.Text = "ID";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 12);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "PW";
-            // 
-            // KiwoomIdTB
-            // 
-            this.KiwoomIdTB.Location = new System.Drawing.Point(53, 52);
-            this.KiwoomIdTB.Name = "KiwoomIdTB";
-            this.KiwoomIdTB.Size = new System.Drawing.Size(121, 21);
-            this.KiwoomIdTB.TabIndex = 4;
-            // 
-            // KiwoomPwTB
-            // 
-            this.KiwoomPwTB.Location = new System.Drawing.Point(53, 84);
-            this.KiwoomPwTB.Name = "KiwoomPwTB";
-            this.KiwoomPwTB.Size = new System.Drawing.Size(121, 21);
-            this.KiwoomPwTB.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 121);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 12);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Cert";
-            // 
-            // KiwoomCertTB
-            // 
-            this.KiwoomCertTB.Location = new System.Drawing.Point(53, 116);
-            this.KiwoomCertTB.Name = "KiwoomCertTB";
-            this.KiwoomCertTB.Size = new System.Drawing.Size(121, 21);
-            this.KiwoomCertTB.TabIndex = 7;
+            this.SecuritiesLoginBtn.Location = new System.Drawing.Point(417, 82);
+            this.SecuritiesLoginBtn.Name = "SecuritiesLoginBtn";
+            this.SecuritiesLoginBtn.Size = new System.Drawing.Size(75, 23);
+            this.SecuritiesLoginBtn.TabIndex = 14;
+            this.SecuritiesLoginBtn.Text = "로그인";
+            this.SecuritiesLoginBtn.UseVisualStyleBackColor = true;
             // 
             // LsCertTB
             // 
@@ -367,43 +319,103 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "ID";
             // 
-            // SecuritiesLoginBtn
+            // KiwoomCertTB
             // 
-            this.SecuritiesLoginBtn.Location = new System.Drawing.Point(417, 82);
-            this.SecuritiesLoginBtn.Name = "SecuritiesLoginBtn";
-            this.SecuritiesLoginBtn.Size = new System.Drawing.Size(75, 23);
-            this.SecuritiesLoginBtn.TabIndex = 14;
-            this.SecuritiesLoginBtn.Text = "로그인";
-            this.SecuritiesLoginBtn.UseVisualStyleBackColor = true;
+            this.KiwoomCertTB.Location = new System.Drawing.Point(53, 116);
+            this.KiwoomCertTB.Name = "KiwoomCertTB";
+            this.KiwoomCertTB.Size = new System.Drawing.Size(121, 21);
+            this.KiwoomCertTB.TabIndex = 7;
             // 
-            // groupBox1
+            // label2
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Location = new System.Drawing.Point(20, 186);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(707, 159);
-            this.groupBox1.TabIndex = 15;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "ChatGPT API";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 121);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(28, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Cert";
             // 
-            // button1
+            // KiwoomPwTB
             // 
-            this.button1.Location = new System.Drawing.Point(417, 82);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "로그인";
-            this.button1.UseVisualStyleBackColor = true;
+            this.KiwoomPwTB.Location = new System.Drawing.Point(53, 84);
+            this.KiwoomPwTB.Name = "KiwoomPwTB";
+            this.KiwoomPwTB.Size = new System.Drawing.Size(121, 21);
+            this.KiwoomPwTB.TabIndex = 5;
             // 
-            // label11
+            // KiwoomIdTB
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(22, 57);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(16, 12);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "ID";
+            this.KiwoomIdTB.Location = new System.Drawing.Point(53, 52);
+            this.KiwoomIdTB.Name = "KiwoomIdTB";
+            this.KiwoomIdTB.Size = new System.Drawing.Size(121, 21);
+            this.KiwoomIdTB.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 12);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "PW";
+            // 
+            // SecuritiesIdLbl
+            // 
+            this.SecuritiesIdLbl.AutoSize = true;
+            this.SecuritiesIdLbl.Location = new System.Drawing.Point(22, 57);
+            this.SecuritiesIdLbl.Name = "SecuritiesIdLbl";
+            this.SecuritiesIdLbl.Size = new System.Drawing.Size(16, 12);
+            this.SecuritiesIdLbl.TabIndex = 2;
+            this.SecuritiesIdLbl.Text = "ID";
+            // 
+            // LsLbl
+            // 
+            this.LsLbl.AutoSize = true;
+            this.LsLbl.Location = new System.Drawing.Point(231, 31);
+            this.LsLbl.Name = "LsLbl";
+            this.LsLbl.Size = new System.Drawing.Size(44, 12);
+            this.LsLbl.TabIndex = 1;
+            this.LsLbl.Text = "LS증권";
+            // 
+            // KiwoomLbl
+            // 
+            this.KiwoomLbl.AutoSize = true;
+            this.KiwoomLbl.Location = new System.Drawing.Point(51, 31);
+            this.KiwoomLbl.Name = "KiwoomLbl";
+            this.KiwoomLbl.Size = new System.Drawing.Size(53, 12);
+            this.KiwoomLbl.TabIndex = 0;
+            this.KiwoomLbl.Text = "키움증권";
+            // 
+            // MenuRuleBtn
+            // 
+            this.MenuRuleBtn.Location = new System.Drawing.Point(12, 144);
+            this.MenuRuleBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.MenuRuleBtn.Name = "MenuRuleBtn";
+            this.MenuRuleBtn.Size = new System.Drawing.Size(131, 66);
+            this.MenuRuleBtn.TabIndex = 3;
+            this.MenuRuleBtn.Text = "3. 조건식";
+            this.MenuRuleBtn.UseVisualStyleBackColor = true;
+            this.MenuRuleBtn.Click += new System.EventHandler(this.MenuRuleBtn_Click);
+            // 
+            // MenuApiBtn
+            // 
+            this.MenuApiBtn.Location = new System.Drawing.Point(12, 210);
+            this.MenuApiBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.MenuApiBtn.Name = "MenuApiBtn";
+            this.MenuApiBtn.Size = new System.Drawing.Size(131, 66);
+            this.MenuApiBtn.TabIndex = 4;
+            this.MenuApiBtn.Text = "4. API";
+            this.MenuApiBtn.UseVisualStyleBackColor = true;
+            this.MenuApiBtn.Click += new System.EventHandler(this.MenuApiBtn_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(312, 73);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(120, 29);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "조회";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
@@ -424,10 +436,10 @@
             this.StockSearchGB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.apiPage.ResumeLayout(false);
-            this.SecuritiesApiGB.ResumeLayout(false);
-            this.SecuritiesApiGB.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.SecuritiesApiGB.ResumeLayout(false);
+            this.SecuritiesApiGB.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -467,6 +479,7 @@
         private System.Windows.Forms.TextBox LsIdTB;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button2;
     }
 }
 

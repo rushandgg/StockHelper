@@ -9,11 +9,11 @@ namespace StockHelper
 {
     public class MakeSource
     {
-        List<string> sourceList = new List<string>();
+        List<string> sourceList;
 
         public List<string> StockList(string market, string type)
         {
-            sourceList.Clear();
+            sourceList = new List<string>();
             LoadData loadData = new LoadData();
             DataTable masterDataTable = loadData.Master(market);
             sourceList = masterDataTable.AsEnumerable()

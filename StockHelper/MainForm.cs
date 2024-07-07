@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
 
 namespace StockHelper
 {
@@ -29,6 +30,7 @@ namespace StockHelper
             LoadData loadData = new LoadData();
             loadData.CreateDirectory();
 
+            
             // 마스터 정보 불러오기
             MakeSource makeSource = new MakeSource();
             kospiStockNameList = makeSource.StockList("kospi", "name");
@@ -84,6 +86,14 @@ namespace StockHelper
         {
             DrawChart drawChart = new DrawChart();
             drawChart.Basic();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadData loadData = new LoadData();
+            DataTable master = loadData.Master("kospi");
+
+            Console.WriteLine(master.Rows.Count);
         }
     }
 }

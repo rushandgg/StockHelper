@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace StockHelper
@@ -23,10 +24,7 @@ namespace StockHelper
         // TradingRule() 매매규칙 불러오기
         
         // DB 입력정보
-        readonly string connString = "Host=localhost;" +
-            "Username=postgres;" +
-            "Password=1111;" +
-            "Database=krx";
+        string connString = "Host=localhost;Port=5432;Username=postgres;Password=1111;Database=krx";
 
         public void CreateDirectory()
         {
@@ -70,11 +68,11 @@ namespace StockHelper
 
                     if (market == "kospi")
                     {
-                        masterSql = "SELECT name, code, sector, industry FROM krx_schema.kospi_master";
+                        masterSql = "SELECT name, code, sector, industry FROM krx_schema.kospi_master;";
                     }
                     else if (market == "kosdaq")
                     {
-                        masterSql = "SELECT name, code, sector, industry FROM krx_schema.kosdaq_master";
+                        masterSql = "SELECT name, code, sector, industry FROM krx_schema.kosdaq_master;";
                     }
                     
                     using (NpgsqlDataAdapter masterAdapter = new NpgsqlDataAdapter(masterSql, conn))
@@ -105,11 +103,11 @@ namespace StockHelper
 
                     if (market == "kospi")
                     {
-                        dayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kospi";
+                        dayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kospi;";
                     }
                     else if (market == "kosdaq")
                     {
-                        dayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kosdaq";
+                        dayPriceSql = "SELECT name, code, date, open, high, low, close, volume, rate FROM krx_schema.kosdaq;";
                     }
                     
                     using (NpgsqlDataAdapter dayPriceAdapter = new NpgsqlDataAdapter(dayPriceSql, conn))
@@ -141,11 +139,11 @@ namespace StockHelper
 
                     if (market == "kospi")
                     {
-                        newsSql = "SELECT name, code, date, title FROM krx_schema.kospi_news";
+                        newsSql = "SELECT name, code, date, title FROM krx_schema.kospi_news;";
                     }
                     else if (market == "kosdaq")
                     {
-                        newsSql = "SELECT name, code, date, title FROM krx_schema.kosdaq_news";
+                        newsSql = "SELECT name, code, date, title FROM krx_schema.kosdaq_news;";
                     }
 
                     using (NpgsqlDataAdapter newsAdapter = new NpgsqlDataAdapter(newsSql, conn))
@@ -177,11 +175,11 @@ namespace StockHelper
 
                     if (market == "kospi")
                     {
-                        keywordSql = "SELECT name, code, date, word1, word2, word3, word4, word5 FROM krx_schema.kospi_keyword";
+                        keywordSql = "SELECT name, code, date, word1, word2, word3, word4, word5 FROM krx_schema.kospi_keyword;";
                     }
                     else if (market == "kosdaq")
                     {
-                        keywordSql = "SELECT name, code, date, word1, word2, word3, word4, word5 FROM krx_schema.kosdaq_keyword";
+                        keywordSql = "SELECT name, code, date, word1, word2, word3, word4, word5 FROM krx_schema.kosdaq_keyword;";
                     }
 
                     using (NpgsqlDataAdapter keywordAdapter = new NpgsqlDataAdapter(keywordSql, conn))
