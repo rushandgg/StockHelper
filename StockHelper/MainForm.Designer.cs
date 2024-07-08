@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -36,8 +39,9 @@
             this.MainTabControl = new System.Windows.Forms.TabControl();
             this.chartPage = new System.Windows.Forms.TabPage();
             this.StockSearchGB = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.ChartSearchBtn = new System.Windows.Forms.Button();
-            this.StockNameTB = new System.Windows.Forms.TextBox();
+            this.StockDataTB = new System.Windows.Forms.TextBox();
             this.StockNameLbl = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataPage = new System.Windows.Forms.TabPage();
@@ -64,7 +68,7 @@
             this.KiwoomLbl = new System.Windows.Forms.Label();
             this.MenuRuleBtn = new System.Windows.Forms.Button();
             this.MenuApiBtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.MainTabControl.SuspendLayout();
             this.chartPage.SuspendLayout();
             this.StockSearchGB.SuspendLayout();
@@ -72,6 +76,7 @@
             this.apiPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SecuritiesApiGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuChartBtn
@@ -111,6 +116,7 @@
             // 
             // chartPage
             // 
+            this.chartPage.Controls.Add(this.chart2);
             this.chartPage.Controls.Add(this.StockSearchGB);
             this.chartPage.Controls.Add(this.chart1);
             this.chartPage.Location = new System.Drawing.Point(4, 24);
@@ -125,7 +131,7 @@
             // 
             this.StockSearchGB.Controls.Add(this.button2);
             this.StockSearchGB.Controls.Add(this.ChartSearchBtn);
-            this.StockSearchGB.Controls.Add(this.StockNameTB);
+            this.StockSearchGB.Controls.Add(this.StockDataTB);
             this.StockSearchGB.Controls.Add(this.StockNameLbl);
             this.StockSearchGB.Location = new System.Drawing.Point(6, 6);
             this.StockSearchGB.Name = "StockSearchGB";
@@ -133,6 +139,16 @@
             this.StockSearchGB.TabIndex = 1;
             this.StockSearchGB.TabStop = false;
             this.StockSearchGB.Text = "종목 검색";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(312, 73);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(120, 29);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "조회";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ChartSearchBtn
             // 
@@ -144,15 +160,15 @@
             this.ChartSearchBtn.UseVisualStyleBackColor = true;
             this.ChartSearchBtn.Click += new System.EventHandler(this.ChartSearchBtn_Click);
             // 
-            // StockNameTB
+            // StockDataTB
             // 
-            this.StockNameTB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.StockNameTB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.StockNameTB.Location = new System.Drawing.Point(111, 20);
-            this.StockNameTB.Name = "StockNameTB";
-            this.StockNameTB.Size = new System.Drawing.Size(100, 21);
-            this.StockNameTB.TabIndex = 1;
-            this.StockNameTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StockNameTB_KeyDown);
+            this.StockDataTB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.StockDataTB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.StockDataTB.Location = new System.Drawing.Point(111, 20);
+            this.StockDataTB.Name = "StockDataTB";
+            this.StockDataTB.Size = new System.Drawing.Size(100, 21);
+            this.StockDataTB.TabIndex = 1;
+            this.StockDataTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StockNameTB_KeyDown);
             // 
             // StockNameLbl
             // 
@@ -165,17 +181,17 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(14, 169);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(6, 142);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(325, 201);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(727, 236);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -407,15 +423,21 @@
             this.MenuApiBtn.UseVisualStyleBackColor = true;
             this.MenuApiBtn.Click += new System.EventHandler(this.MenuApiBtn_Click);
             // 
-            // button2
+            // chart2
             // 
-            this.button2.Location = new System.Drawing.Point(312, 73);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 29);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "조회";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            chartArea1.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart2.Legends.Add(legend1);
+            this.chart2.Location = new System.Drawing.Point(3, 384);
+            this.chart2.Name = "chart2";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart2.Series.Add(series1);
+            this.chart2.Size = new System.Drawing.Size(727, 119);
+            this.chart2.TabIndex = 2;
+            this.chart2.Text = "chart2";
             // 
             // MainForm
             // 
@@ -440,6 +462,7 @@
             this.groupBox1.PerformLayout();
             this.SecuritiesApiGB.ResumeLayout(false);
             this.SecuritiesApiGB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -459,7 +482,7 @@
         private System.Windows.Forms.Label StockNameLbl;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Button ChartSearchBtn;
-        public System.Windows.Forms.TextBox StockNameTB;
+        public System.Windows.Forms.TextBox StockDataTB;
         private System.Windows.Forms.GroupBox SecuritiesApiGB;
         private System.Windows.Forms.TextBox KiwoomPwTB;
         private System.Windows.Forms.TextBox KiwoomIdTB;
@@ -480,6 +503,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
     }
 }
 

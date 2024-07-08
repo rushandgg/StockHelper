@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
+using OxyPlot;
+using OxyPlot.Series;
 
 namespace StockHelper
 {
@@ -44,7 +46,7 @@ namespace StockHelper
             autoCompleteCollection.AddRange(kosdaqStockCodeList.ToArray());
 
             // 자동완성 소스 채우기
-            StockNameTB.AutoCompleteCustomSource = autoCompleteCollection;
+            StockDataTB.AutoCompleteCustomSource = autoCompleteCollection;
         }
 
 
@@ -75,15 +77,21 @@ namespace StockHelper
                 e.Handled = true;
                 e.SuppressKeyPress = true;
 
+                string stockData = StockDataTB.Text;
+                string[] stockDataArray = DetermineNameCode(stockData);
+
                 DrawChart drawChart = new DrawChart();
-                drawChart.Basic();
+                drawChart.Basic(stockDataArray);
             }
         }
 
         private void ChartSearchBtn_Click(object sender, EventArgs e)
         {
+            string stockData = StockDataTB.Text;
+            string[] stockDataArray = DetermineNameCode(stockData);
+            
             DrawChart drawChart = new DrawChart();
-            drawChart.Basic();
+            drawChart.Basic(stockDataArray);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -94,34 +102,34 @@ namespace StockHelper
             Console.WriteLine(master.Rows.Count);
         }
 
-        public string[] DetermineNameCode(string data)
+        public string[] DetermineNameCode(string stockData)
         {   // TextBox에 있는 내용이 코스피인지 코스닥인지, 종목명인지 종목코드인지 판별해서 넘겨줌
 
-            string[] dataArray = new string[3];
-            dataArray[2] = data;
+            string[] stockDataArray = new string[3];
+            stockDataArray[2] = stockData;
 
-            if (kospiStockNameList.Contains(data))
+            if (kospiStockNameList.Contains(stockData))
             {
-                dataArray[0] = "kospi";
-                dataArray[1] = "name";
+                stockDataArray[0] = "kospi";
+                stockDataArray[1] = "name";
             }
-            else if (kospiStockCodeList.Contains(data))
+            else if (kospiStockCodeList.Contains(stockData))
             {
-                dataArray[0] = "kospi";
-                dataArray[1] = "code";
+                stockDataArray[0] = "kospi";
+                stockDataArray[1] = "code";
             }
-            else if (kosdaqStockNameList.Contains(data))
+            else if (kosdaqStockNameList.Contains(stockData))
             {
-                dataArray[0] = "kosdaq";
-                dataArray[1] = "name";
+                stockDataArray[0] = "kosdaq";
+                stockDataArray[1] = "name";
             }
-            else if (kosdaqStockCodeList.Contains(data))
+            else if (kosdaqStockCodeList.Contains(stockData))
             {
-                dataArray[0] = "kosdaq";
-                dataArray[1] = "code";
+                stockDataArray[0] = "kosdaq";
+                stockDataArray[1] = "code";
             }
 
-            return dataArray;
+            return stockDataArray;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace StockHelper
         // TradingRule() 매매규칙 불러오기
         
         // DB 입력정보
-        string connString = "Host=localhost;" +
+        readonly string connString = "Host=localhost;" +
                             "Port=5432;" +
                             "Username=postgres;" +
                             "Password=1111;" +
