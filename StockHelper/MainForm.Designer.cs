@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.MenuChartBtn = new System.Windows.Forms.Button();
             this.MenuDataBtn = new System.Windows.Forms.Button();
             this.MainTabControl = new System.Windows.Forms.TabControl();
             this.chartPage = new System.Windows.Forms.TabPage();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.StockSearchGB = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.ChartSearchBtn = new System.Windows.Forms.Button();
@@ -68,15 +69,17 @@
             this.KiwoomLbl = new System.Windows.Forms.Label();
             this.MenuRuleBtn = new System.Windows.Forms.Button();
             this.MenuApiBtn = new System.Windows.Forms.Button();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.StockDGV = new System.Windows.Forms.DataGridView();
             this.MainTabControl.SuspendLayout();
             this.chartPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.StockSearchGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.dataPage.SuspendLayout();
             this.apiPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SecuritiesApiGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StockDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuChartBtn
@@ -126,6 +129,22 @@
             this.chartPage.TabIndex = 0;
             this.chartPage.Text = "chartPage";
             this.chartPage.UseVisualStyleBackColor = true;
+            // 
+            // chart2
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart2.Legends.Add(legend1);
+            this.chart2.Location = new System.Drawing.Point(3, 384);
+            this.chart2.Name = "chart2";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart2.Series.Add(series1);
+            this.chart2.Size = new System.Drawing.Size(727, 119);
+            this.chart2.TabIndex = 2;
+            this.chart2.Text = "chart2";
             // 
             // StockSearchGB
             // 
@@ -197,6 +216,7 @@
             // 
             // dataPage
             // 
+            this.dataPage.Controls.Add(this.StockDGV);
             this.dataPage.Location = new System.Drawing.Point(4, 24);
             this.dataPage.Name = "dataPage";
             this.dataPage.Padding = new System.Windows.Forms.Padding(3);
@@ -423,21 +443,14 @@
             this.MenuApiBtn.UseVisualStyleBackColor = true;
             this.MenuApiBtn.Click += new System.EventHandler(this.MenuApiBtn_Click);
             // 
-            // chart2
+            // StockDGV
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart2.Legends.Add(legend1);
-            this.chart2.Location = new System.Drawing.Point(3, 384);
-            this.chart2.Name = "chart2";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart2.Series.Add(series1);
-            this.chart2.Size = new System.Drawing.Size(727, 119);
-            this.chart2.TabIndex = 2;
-            this.chart2.Text = "chart2";
+            this.StockDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.StockDGV.Location = new System.Drawing.Point(23, 77);
+            this.StockDGV.Name = "StockDGV";
+            this.StockDGV.RowTemplate.Height = 23;
+            this.StockDGV.Size = new System.Drawing.Size(240, 150);
+            this.StockDGV.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -454,15 +467,17 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainTabControl.ResumeLayout(false);
             this.chartPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.StockSearchGB.ResumeLayout(false);
             this.StockSearchGB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.dataPage.ResumeLayout(false);
             this.apiPage.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.SecuritiesApiGB.ResumeLayout(false);
             this.SecuritiesApiGB.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StockDGV)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -504,6 +519,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.DataGridView StockDGV;
     }
 }
 
