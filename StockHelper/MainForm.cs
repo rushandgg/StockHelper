@@ -20,6 +20,8 @@ namespace StockHelper
         List<string> kospiStockCodeList = new List<string>();
         List<string> kosdaqStockCodeList = new List<string>();
 
+        ChartExtendForm chartExtendForm;
+
         public MainForm()
         {
             InitializeComponent();
@@ -95,7 +97,7 @@ namespace StockHelper
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {   // 테스트용
             LoadData loadData = new LoadData();
             DataTable master = loadData.Master("kospi");
 
@@ -130,6 +132,23 @@ namespace StockHelper
             }
 
             return stockDataArray;
+        }
+
+        private void ChartExtendBtn_Click(object sender, EventArgs e)
+        {
+            if (chartExtendForm == null || chartExtendForm.IsDisposed)
+            {
+                chartExtendForm = new ChartExtendForm();
+                chartExtendForm.StartPosition = FormStartPosition.Manual;
+                chartExtendForm.Location = new System.Drawing.Point(this.Right, this.Top);
+                chartExtendForm.Show();
+            }
+            else
+            {
+                chartExtendForm.BringToFront(); // Form2를 맨 앞으로 가져옴
+                chartExtendForm.WindowState = FormWindowState.Normal; // 최소화 상태일 경우 복원
+                chartExtendForm.Focus(); 
+            }
         }
     }
 }
