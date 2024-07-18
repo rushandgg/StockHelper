@@ -87,6 +87,7 @@
             this.Controls.Add(this.TechnicalIndicatorLV);
             this.Name = "ChartExtendForm";
             this.Text = "ChartExtendForm";
+            this.Load += new System.EventHandler(this.ChartExtendForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

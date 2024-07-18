@@ -16,5 +16,12 @@ namespace StockHelper
         {
             InitializeComponent();
         }
+
+        private void ChartExtendForm_Load(object sender, EventArgs e)
+        {   // 보조지표 목록 불러옴
+
+        }
+
+
     }
 }

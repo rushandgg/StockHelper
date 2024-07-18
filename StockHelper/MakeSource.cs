@@ -10,7 +10,7 @@ namespace StockHelper
     public class MakeSource
     {
         List<string> sourceList;
-
+        List<string> technicalIndicatorList;
         public List<string> StockList(string market, string type)
         {
             sourceList = new List<string>();
@@ -21,6 +21,13 @@ namespace StockHelper
                              .ToList();
 
             return sourceList;
+        }
+
+        public List<string> TechnicalIndicatorList()
+        {
+            technicalIndicatorList = new List<string>();
+
+            return technicalIndicatorList;
         }
     }
 }
