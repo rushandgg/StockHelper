@@ -3,7 +3,7 @@
 
 - Program Language : C#<br/>
 - Framework : .net framework 4.8 <br/>
-- Using : OxyPlot, Kiwwoom Securities API, LS Securities API <br/>
+- Using : OxyPlot, Kiwoom Securities API, LS Securities API <br/>
 <br/>
 
 ## 해야할 것
